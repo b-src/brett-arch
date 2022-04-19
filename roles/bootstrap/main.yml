@@ -1,0 +1,47 @@
+---
+# TODO: alter this to make sure role is idempotent
+- name: update system clock
+  command: timedatectl set-ntp true
+
+# Partition disk
+# Format partitions
+# mount filesystems. mount root to /mnt and other partitions accordingly
+# set up mirror list
+#
+# TODO: idempotence
+- name: pacstrap
+  command: pacstrap /mnt base linux linux-firmware
+
+# TODO: idempotence
+- name: filesystem table
+  command: genfstab -U /mnt >> /mnt/etc/fstab
+
+# TODO: idempotence
+- name: chroot
+  command: arch-chroot /mnt
+
+# TODO: idempotence
+- name: set timezone
+  command: ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
+
+# TODO: idempotence
+- name: hardware clock offset
+  command: hwclock --systohc
+
+# uncomment en_US.UTF-8 UTF-8 in /etc/locale.gen
+
+# TODO: idempotence
+- name: generate locales
+  command: locale-gen
+
+# TODO: idempotence. There is almost definitely a file module for this
+- name: set language
+  command: echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+
+# TODO: idempotence
+- name: hostname
+  command: echo {{ hostname }} >> /etc/hostname
+
+# set root password
+
+# REBOOT
