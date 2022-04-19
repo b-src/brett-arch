@@ -1,0 +1,185 @@
+---
+# TODO: ansible is a dependency for this whole process, just remove this
+- name: ansible
+  pacman:
+    name: ansible-core ansible
+    state: present
+
+# TODO: This will probably have to be moved. An internet connection is a
+# prerequisite for installing any packages at all
+- name: networkmanager
+  pacman:
+    name: networkmanager
+    state: present
+# TODO: enable networkmanager
+# connect to wifi network - probably never include this behavior
+
+# TODO:MISC configurations
+# edit /etc/default/grub to make grub text readable on high dpi screen
+# GRUB_GFXMODE=1024x768
+# afterwards run grub-mkconfig -o /boot/grub/grub.cfg
+#
+# add delay after failed login
+# edit /etc/pam.d/system-login
+# auth optional pam_faildelay.so delay=2000000
+
+- name: vim
+  pacman:
+    name: vim
+    state: present
+
+- name: sudo
+  pacman:
+    name: sudo
+    state: present
+# TODO: set default editor in visudo
+# Defaults  editor=/usr/bin/vim, !env_editor
+# TODO: add user to sudoers. is there a visudo module?
+
+- name: networkmanager
+  pacman:
+    name: networkmanager
+    state: present
+# TODO: enable networkmanager
+# connect to wifi network - probably never include this behavior
+
+- name: man
+  pacman:
+    name: man
+    state: present
+
+- name: microcode updates
+  pacman:
+    name: intel-ucode
+    state: present
+# TODO: run
+# $ grub-mkconfig -o /boot/grub/grub.cfg
+# afterwards to remake grub config
+
+- name: openssh
+  pacman:
+    name: openssh
+    state: present
+# TODO: edit /etc/ssh/sshd_config to disable root login
+# PermitRootLogin no
+# If this is done via dotfiles ensure no secrets are exposed
+
+- name: wayland
+  pacman:
+    name: wayland
+    state: present
+
+- name: wl-clipboard
+  pacman:
+    name: wl-clipboard
+    state: present
+# TODO: configure vim to use wayland clipboard
+
+- name: sway
+  pacman:
+    name: sway
+    state: present
+
+- name: waybar
+  pacman:
+    name: waybar
+    state: present
+
+- name: bemenu
+  pacman:
+    name: bemenu
+    state: present
+
+- name: kitty
+  pacman:
+    name: kitty
+    state: present
+
+- name: fish
+  pacman:
+    name: fish
+    state: present
+
+- name: light
+  pacman:
+    name: light
+    state: present
+
+- name: firefox
+  pacman:
+    name: firefox
+    state: present
+# TODO: install extensions. Can this be captured by dotfiles?
+
+- name: git
+  pacman:
+    name: git
+    state: present
+
+- name: fonts
+  pacman:
+    name: noto-fonts-emoji ttf-font-awesome
+    state: present
+
+- name: vscode
+  pacman:
+    name: code
+    state: present
+
+- name: rustup
+  pacman:
+    name: rustup
+    state: present
+# TODO: install rust via rustup
+# rustup default stable
+
+- name: zig
+  pacman:
+    name: zig
+    state: present
+
+- name: unzip
+  pacman:
+    name: unzip
+    state: present
+
+- name: LaTeX
+  pacman:
+    name: texlive-most
+    state: present
+
+- name: neovim
+  pacman:
+    name: neovim
+    state: present
+
+- name: mupdf
+  pacman:
+    name: mupdf
+    state: present
+
+- name: libreoffice
+  pacman:
+    name: libreoffice
+    state: present
+
+# for AUR
+# Note - needs option --needed
+- name: base-devel
+  pacman:
+    name: base-devel
+    state: present
+
+### AUR ###
+# TODO: aur helper or aur module
+- name: rcm
+  aur-helper:
+    name: rcm
+    state: present
+
+- name: vim-plug
+  aur-helper:
+    name: vim-plug
+    state: present
+
+

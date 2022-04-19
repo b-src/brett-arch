@@ -1,0 +1,9 @@
+---
+- name: system install
+  hosts: hosts
+  connection: local
+  become: yes
+  become_method: sudo
+  roles:
+    - { role: pacman }
+    - { role: dotfiles }

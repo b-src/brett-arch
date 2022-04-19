@@ -1,0 +1,8 @@
+---
+- name: clone dotfiles
+  git:
+    repo: <variable>
+    dest: <variable>
+
+- name: install dotfiles
+  command: rcup -d <dest path> <flags?>
