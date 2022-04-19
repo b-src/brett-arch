@@ -1,172 +1,166 @@
 ---
 # TODO: ansible is a dependency for this whole process, just remove this
 - name: ansible
-  pacman:
+  community.general.pacman:
     name: ansible-core ansible
     state: present
 
 # TODO: This will probably have to be moved. An internet connection is a
 # prerequisite for installing any packages at all
 - name: networkmanager
-  pacman:
+  community.general.pacman:
     name: networkmanager
     state: present
-# TODO: enable networkmanager
+# TODO: enable networkmanager - handler?
 # connect to wifi network - probably never include this behavior
 
-# TODO:MISC configurations
+# TODO:MISC configurations - ansible.builtin.lineinfile?
 # edit /etc/default/grub to make grub text readable on high dpi screen
 # GRUB_GFXMODE=1024x768
 # afterwards run grub-mkconfig -o /boot/grub/grub.cfg
+# handler?
 #
-# add delay after failed login
+# add delay after failed login - ansible.builtin.lineinfile?
 # edit /etc/pam.d/system-login
 # auth optional pam_faildelay.so delay=2000000
 
 - name: vim
-  pacman:
+  community.general.pacman:
     name: vim
     state: present
 
 - name: sudo
-  pacman:
+  community.general.pacman:
     name: sudo
     state: present
-# TODO: set default editor in visudo
+# TODO: set default editor in visudo - ansible.builtin.lineinfile?
 # Defaults  editor=/usr/bin/vim, !env_editor
 # TODO: add user to sudoers. is there a visudo module?
 
-- name: networkmanager
-  pacman:
-    name: networkmanager
-    state: present
-# TODO: enable networkmanager
-# connect to wifi network - probably never include this behavior
-
 - name: man
-  pacman:
+  community.general.pacman:
     name: man
     state: present
 
 - name: microcode updates
-  pacman:
+  community.general.pacman:
     name: intel-ucode
     state: present
 # TODO: run
 # $ grub-mkconfig -o /boot/grub/grub.cfg
-# afterwards to remake grub config
+# afterwards to remake grub config - handler?
 
 - name: openssh
-  pacman:
+  community.general.pacman:
     name: openssh
     state: present
 # TODO: edit /etc/ssh/sshd_config to disable root login
 # PermitRootLogin no
-# If this is done via dotfiles ensure no secrets are exposed
+# If this is done via dotfiles ensure no secrets are exposed - ansible.builtin.lineinfile?
 
 - name: wayland
-  pacman:
+  community.general.pacman:
     name: wayland
     state: present
 
 - name: wl-clipboard
-  pacman:
+  community.general.pacman:
     name: wl-clipboard
     state: present
 # TODO: configure vim to use wayland clipboard
 
 - name: sway
-  pacman:
+  community.general.pacman:
     name: sway
     state: present
 
 - name: waybar
-  pacman:
+  community.general.pacman:
     name: waybar
     state: present
 
 - name: bemenu
-  pacman:
+  community.general.pacman:
     name: bemenu
     state: present
 
 - name: kitty
-  pacman:
+  community.general.pacman:
     name: kitty
     state: present
 
 - name: fish
-  pacman:
+  community.general.pacman:
     name: fish
     state: present
 
 - name: light
-  pacman:
+  community.general.pacman:
     name: light
     state: present
 
 - name: firefox
-  pacman:
+  community.general.pacman:
     name: firefox
     state: present
 # TODO: install extensions. Can this be captured by dotfiles?
 
 - name: git
-  pacman:
+  community.general.pacman:
     name: git
     state: present
 
 - name: fonts
-  pacman:
+  community.general.pacman:
     name: noto-fonts-emoji ttf-font-awesome
     state: present
 
 - name: vscode
-  pacman:
+  community.general.pacman:
     name: code
     state: present
 
 - name: rustup
-  pacman:
+  community.general.pacman:
     name: rustup
     state: present
 # TODO: install rust via rustup
 # rustup default stable
 
 - name: zig
-  pacman:
+  community.general.pacman:
     name: zig
     state: present
 
 - name: unzip
-  pacman:
+  community.general.pacman:
     name: unzip
     state: present
 
 - name: LaTeX
-  pacman:
+  community.general.pacman:
     name: texlive-most
     state: present
 
 - name: neovim
-  pacman:
+  community.general.pacman:
     name: neovim
     state: present
 
 - name: mupdf
-  pacman:
+  community.general.pacman:
     name: mupdf
     state: present
 
 - name: libreoffice
-  pacman:
+  community.general.pacman:
     name: libreoffice
     state: present
 
 # for AUR
 # Note - needs option --needed
 - name: base-devel
-  pacman:
+  community.general.pacman:
     name: base-devel
     state: present
 
@@ -181,5 +175,3 @@
   aur-helper:
     name: vim-plug
     state: present
-
-
