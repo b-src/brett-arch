@@ -1,8 +1,18 @@
 ---
 - name: clone dotfiles
   git:
-    repo: <variable>
-    dest: <variable>
+    repo: {{ dotfiles.remote }}
+    dest: {{ dotfiles.local }}
+    update: yes
 
+# TODO: idempotence? I believe rcup is idempotent to start with
 - name: install dotfiles
-  command: rcup -d <dest path> <flags?>
+  command: rcup -d {{ dotfiles.local }}
+
+- name: install vscode extensions
+  command: # TODO:
+    # - get list of installed extensions
+    # - code --list-extensions
+    # - for every extension in <vscode exceptions text file> that isn't in the list above:
+    # - install extension
+    # - code --install-extension <extension>
