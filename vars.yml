@@ -1,0 +1,3 @@
+dotfiles:
+  remote: git@github.com:b-src/dotfiles.git
+  local: /home/brett/.dotfiles
